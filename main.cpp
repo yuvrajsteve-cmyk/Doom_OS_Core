@@ -1,48 +1,25 @@
 #include <iostream>
-#include <string>
+#include "DoomSecurity.h"
 
 using namespace std;
 
-// classes and encapsulations topic 
-class DoomSecuritySystem {
-    private:
-        int secret_key;
-
-    public:
-        DoomSecuritySystem() {
-            secret_key = 1962;
-        }    
-
-        void bootSystem() {
-            cout << "=================================" << endl;
-            cout << "     WELCOME TO DOOM_OS          " << endl;
-            cout << "=================================" << endl;
-            cout << "[INFO] Loading Digital Electronics Module..." << endl;
-            cout << "[INFO] Loading DSA Threat Radar...." << endl;
-            cout << "[STATUS] DOOM_OS IS NOW LIVE!\n" << endl;
-        }
-
-        bool authenticate(int input_key) {
-            if (input_key == secret_key) {
-                return true;
-            }
-            return false;
-        }
-};
-
 int main() {
     DoomSecuritySystem doomSystem;
-
     doomSystem.bootSystem();
 
     int user_input;
-    cout << "Enter Secret Master Key to Access: ";
+    cout << "Enter Secret Master Key To Access: ";
     cin >> user_input;
 
     if (doomSystem.authenticate(user_input)) {
-        cout << "\n[ACCESS GRANTED]" << endl;
+        cout << "\n Access Granted: " << endl;
+
+        int test_packet;
+        cout << "\n Enter ant number to Security: ";
+        cin >> test_packet;
+        doomSystem.convertToBinary(test_packet);
     } else {
-        cout << "\n[ACCESS DENIED]" << endl;
+        cout << "\n [ACCESS DENIED]" << endl;
     }
 
     return 0;
