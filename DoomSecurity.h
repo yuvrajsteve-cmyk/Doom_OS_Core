@@ -9,7 +9,9 @@ class DoomSecuritySystem {
         DoomSecuritySystem();
         void bootSystem();
         bool authenticate(int input_key);
-        void convertToBinary(int decimal_number);    
+        void convertToBinary(int decimal_number);
+        int linearSearchThreat(int blacklist[], int size, int suspect_id);
+        int binarySearchThreat(int sorted_blacklist[], int size, int suspect_id);    
 };
 
 #endif

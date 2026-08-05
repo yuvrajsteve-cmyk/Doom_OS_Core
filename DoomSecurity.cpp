@@ -43,3 +43,34 @@ void DoomSecuritySystem::convertToBinary(int decimal_number) {
     }
     cout << endl;   
 }
+
+// logic of the linear search 
+int DoomSecuritySystem::linearSearchThreat(int blacklist[], int size, int suspect_id) {
+    cout << "\n [DSA MODULE] Inititating Linear Search Radar..." << endl;
+    for (int i = 0; i < size; i++) {
+        if (blacklist[i] == suspect_id) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int DoomSecuritySystem::binarySearchThreat(int sorted_blacklist[], int size, int suspect_id) {
+    cout << "\n [DSA MODULE] Intitiating High_Speed Binary Search Radar..." << endl;
+    int low = 0;
+    int high = size -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (sorted_blacklist[mid] == suspect_id) {
+            return mid;
+        }
+        if (sorted_blacklist[mid] < suspect_id) {
+            low == mid + 1;
+        } else {
+            high = mid -1 ;
+        }
+    }   
+    return - 1;
+}
