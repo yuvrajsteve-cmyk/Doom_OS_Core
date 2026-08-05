@@ -29,17 +29,17 @@ int main() {
         cout << "For Check Enter The Network ID:" << endl;
         cin >> suspect;
 
-        int result_index = doomSystem.binarySearchThreat(blacklist_ids, total_ids, suspect);
+        int linear_res = doomSystem.linearSearchThreat(blacklist_ids, total_ids, suspect);
+        int binary_res = doomSystem.binarySearchThreat(blacklist_ids, total_ids, suspect);
 
-        if (result_index != -1) {
-            cout << "[ALERT] Found The Danger [" << result_index << "] on this ID " << endl;
-            cout << "[ACTION] System Locakdown Activate!" << endl;
+            if (binary_res != -1) {
+                cout << "\n [ALERT] Danger Found! Index:" << binary_res << endl;
+            } else {
+                cout << "\n [SAFE] No Danger Found" << endl;
+            }
         } else {
-        cout << "\n [SAFE] ID is Safe! No Threat Found" << endl;
+            cout << "\n [ACCESS DENIED] Attention!" << endl;
         }
-    } else {
-        cout << "\n[ACCESS DENIED]" << endl;
-    }
-
     return 0;
+    
 }
