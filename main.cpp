@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    DoomSecuritySystem doomSystem;
+    DoomSecuritySystem doomSystem("config.txt");
     doomSystem.bootSystem();
 
     int user_input;
@@ -12,12 +12,8 @@ int main() {
     cin >> user_input;
 
     if (doomSystem.authenticate(user_input)) {
-        cout << "\n Access Granted: " << endl;
+        cout << "\n Access Granted: Welcome Master \n" << endl;
 
-        int test_packet;
-        cout << "\n Enter ant number to Security: ";
-        cin >> test_packet;
-        doomSystem.convertToBinary(test_packet);
 
         int blacklist_ids[] = {101, 204, 305, 412, 550, 677, 899};
         int total_ids = 7;
@@ -33,13 +29,16 @@ int main() {
         int binary_res = doomSystem.binarySearchThreat(blacklist_ids, total_ids, suspect);
 
             if (binary_res != -1) {
-                cout << "\n [ALERT] Danger Found! Index:" << binary_res << endl;
+                cout << "\n[!] [ALERT] Danger Found! Index:" << binary_res << endl;
             } else {
-                cout << "\n [SAFE] No Danger Found" << endl;
+                cout << "\n[v] [SAFE] No Danger Found" << endl;
             }
         } else {
-            cout << "\n [ACCESS DENIED] Attention!" << endl;
+            cout << "\n[x] [ACCESS DENIED] Attention! Intruder Alert Triggered! \n" << endl;
         }
+int dec_val = 5;
+cout << "\n [DIGITAL ELECTRONICS MODULE] Decimal " << dec_val
+            << " in Binary is: " << doomSystem.convertToBinary(dec_val) << endl;        
     return 0;
     
 }

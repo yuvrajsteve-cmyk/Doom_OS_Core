@@ -6,10 +6,12 @@ class DoomSecuritySystem {
         int secret_key;
     
     public:
-        DoomSecuritySystem();
+        DoomSecuritySystem(int key);
+        ~DoomSecuritySystem();
+        
         void bootSystem();
         bool authenticate(int input_key);
-        void convertToBinary(int decimal_number);
+        int convertToBinary(int decimal_number);
         int linearSearchThreat(int blacklist[], int size, int suspect_id);
         int binarySearchThreat(int sorted_blacklist[], int size, int suspect_id);    
 };

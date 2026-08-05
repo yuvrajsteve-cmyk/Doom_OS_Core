@@ -1,84 +1,67 @@
-#include "DoomSecurity.h"
 #include <iostream>
+#include "DoomSecurity.h"
 
 using namespace std;
 
-DoomSecuritySystem::DoomSecuritySystem() {
-    secret_key = 1962;
+DoomSecuritySystem::DoomSecuritySystem(int key) {
+    secret_key = key;
+    cout << "\n[DOOM CORE] Initializing Secure Enclave..." << endl;
 }
 
-void DoomSecuritySystem::bootSystem() {
-    cout << "======================" << endl;
-    cout << "  WELCOME TO DOOM-OS  " << endl;
-    cout << "======================" << endl;
-    cout << "[INFO] Loading Digital Electronics Module..." << endl;
-    cout << "[INFO] Loading DSA Threat Radar..." << endl;
-    cout << "[STATUS] DOOM_OS IS NOW LIVE!\n" << endl;
+DoomSecuritySystem::~DoomSecuritySystem() {
+    cout << "\n[DOOM CORE] Purging memory buffers. Shutting Down.\n" << endl;
 }
 
 bool DoomSecuritySystem::authenticate(int input_key) {
-    return (input_key == secret_key);
+    if (input_key == secret_key) {
+        return true;
+    }
+    return false;
 }
 
-void DoomSecuritySystem::convertToBinary(int decimal_number) {
-    int binary_array[32];
-    int i = 0;
-
-    cout << "\n[DIGITAL MODULE] Converting Decimal " << decimal_number << " to Cryptographic Binary..." << endl;
-
-    if (decimal_number == 0) {
-        cout << "DOOM-BINARY CODE:  0" << endl;
-        return ;
-    }
-
-    while (decimal_number > 0) {
-        binary_array[i] = decimal_number % 2;
-        decimal_number = decimal_number / 2;
-        i++;
-    }
-
-    cout << "DOOM-BINARY CODE: ";
-    for (int j = i - 1; j >= 0; j--) {
-        cout << binary_array[j];
-    }
-    cout << endl;   
+void DoomSecuritySystem::bootSystem() {
+    cout << "[INFO] DOOM_OS Kernel loaded Successfully.\n" << endl;
 }
 
-// logic of the linear search 
+int DoomSecuritySystem::convertToBinary(int decimal_number) {
+    int binary = 0, reminder, i = 1;
+    while (decimal_number != 0) {
+        reminder = decimal_number % 2;
+        decimal_number /= 2;
+        binary += reminder * i;
+        i *= 10;
+    }
+    return binary;
+}
+
+// linear search algo 
 int DoomSecuritySystem::linearSearchThreat(int blacklist[], int size, int suspect_id) {
-    cout << "\n [DSA MODULE] Inititating Linear Search Radar..." << endl;
-    int steps = 0;
-    for (int i = 0; i < size; i++) {
-        steps++ ;
-        if (blacklist[i] == suspect_id) {
-            cout << "Linear Search took ["<< steps << "] steps." << endl;
+    for (int i = 0; i < size; i ++) {
+        if(blacklist[i] == suspect_id) {
             return i;
-        }
+       }
     }
-    cout << "Linear Search took [" << steps << "] steps." << endl;
     return -1;
 }
 
+// Binary search algo 
 int DoomSecuritySystem::binarySearchThreat(int sorted_blacklist[], int size, int suspect_id) {
-    cout << "\n [DSA MODULE] Intitiating High_Speed Binary Search Radar..." << endl;
+    int low = 0, high = size - 1;
     int steps = 0;
-    int low = 0;
-    int high = size -1;
 
     while (low <= high) {
         steps++;
         int mid = low + (high - low) / 2;
 
         if (sorted_blacklist[mid] == suspect_id) {
-            cout << "Binary Search took ["<< steps << "] steps!" << endl;
+            cout << "[DSA MODULE] Binary Seaech Took " << steps << " steps. \n" << endl;
             return mid;
         }
         if (sorted_blacklist[mid] < suspect_id) {
             low = mid + 1;
         } else {
-            high = mid -1 ;
+            high = mid - 1;
         }
-    } 
-    cout << "Binary search took ["<< steps << "] steps." << endl;  
-    return - 1;
+    }
+    return -1;
 }
