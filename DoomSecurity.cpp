@@ -62,6 +62,32 @@ int DoomSecuritySystem::binarySearchThreat(int sorted_blacklist[], int size, int
         } else {
             high = mid - 1;
         }
-    }
+    }   
     return -1;
+}
+double DoomSecuritySystem::calculateMean(int blacklist[], int size) {
+    if (size <= 0) return 0.0;
+
+    double sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += blacklist[i];
+    }
+    return sum / size;
+} 
+
+
+void DoomSecuritySystem::findThreatRange(int blacklist[], int size, int &min_val, int &max_val) {
+    if (size <= 0) return;
+
+    min_val = blacklist[0];
+    max_val = blacklist[0];
+
+    for (int i = 1; i < size; i ++) {
+        if (blacklist[i] < min_val) {
+            min_val = blacklist[i];
+        }
+        if (blacklist[i] > max_val) {
+            max_val = blacklist[i];
+        }
+    }
 }
