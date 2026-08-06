@@ -60,6 +60,12 @@ int main() {
     int dec_val = 5;
     cout << "\n [DIGITAL ELECTRONICS MODULE] Decimal " << dec_val
          << " in Binary is: " << doomSystem.convertToBinary(dec_val) << endl;
+         int test_val = 5;
+         cout << "\n------------------------\n" ;
+         cout << " DIGITAL ELECTRONICS MODULE " ;
+         cout << "--------------------------\n" ;
+         cout << "[-] Decimal " << test_val << " in Binary  : " << doomSystem.convertToBinary(test_val) << endl;
+         cout << "[-] 2's Compliment of " << test_val << " : " << doomSystem.getTwosCompliment(test_val) << endl;
 
     return 0;
 }

@@ -15,7 +15,9 @@ class DoomSecuritySystem {
         int linearSearchThreat(int blacklist[], int size, int suspect_id);
         int binarySearchThreat(int sorted_blacklist[], int size, int suspect_id);
         double calculateMean(int blacklist[], int size);
-        void findThreatRange(int blacklist[], int size, int &min_val, int &max_val);    
+        void findThreatRange(int blacklist[], int size, int &min_val, int &max_val);
+        void sortThreats(int arr[], int size);
+        int getTwosCompliment(int val);    
 };
 
 #endif
